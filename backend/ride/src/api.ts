@@ -1,3 +1,5 @@
+//driver
+//adapter - A api é uma adaptação para o uso da aplicação, ela é uma forma de se chegar até a aplicação
 import express from 'express'
 import AccountService from './AccountService'
 
@@ -5,6 +7,7 @@ const app = express()
 
 app.use(express.json())
 
+//port 
 const accountService = new AccountService()
 
 app.post('/signup', async function (req, res) {

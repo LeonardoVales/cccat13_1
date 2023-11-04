@@ -9,11 +9,13 @@ export default class AccountService {
 	cpfValidator: CpfValidator;
 	mailerGateway: MailerGateway;
 
+	// criando uma porta para que um ou mais adapters implementem, permitindo ue eu varie o comportamento
 	constructor (readonly accountDAO: AccountDAO = new AccountDAODatabase()) {
 		this.cpfValidator = new CpfValidator();
 		this.mailerGateway = new MailerGateway()
 	}
 
+	//port
 	async signup (input: any) {
 
 			input.accountId = crypto.randomUUID();
@@ -33,6 +35,7 @@ export default class AccountService {
 
 	}
 
+	//port
 	async getAccount (accountId: string) {
 		const account = await this.accountDAO.getById(accountId)
 		return account;

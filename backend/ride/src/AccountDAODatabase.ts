@@ -1,3 +1,5 @@
+// resource
+// adapter
 import pgp from "pg-promise";
 import AccountDAO from "./AccountDAO";
 
