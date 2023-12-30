@@ -18,7 +18,12 @@ export default class RideDAODatabase implements RideDAO {
   }
 
   async update(ride: any) {
-
+    const connection = pgp()("postgresql://getrak:getrak@localhost:5432/postgres");
+    await connection.query(
+      "update cccat13.ride set driver_id = $1, status = $2 where ride_id = $3",
+      [ride.driverId, ride.status, ride.rideId]
+    );
+    await connection.$pool.end();
   }
 
   async getById(rideId: string) {
@@ -27,5 +32,30 @@ export default class RideDAODatabase implements RideDAO {
     await connection.$pool.end();
 
     return rideData
+  }
+
+  async getActiveRidesByPassengerId(passengerId: string) {
+
+    // try {
+    //   const connection = pgp()("postgresql://getrak:getrak@localhost:5432/postgres");
+    //   const ridesData = await connection.query(
+    //     "select * from cccat13.ride where passenger_id = $1 and status in ('requested', 'accepted', 'in_progress')",
+    //     [passengerId]
+    //   );
+    //   await connection.$pool.end();
+      
+    //   return ridesData
+    // } catch(e) {
+    //   console.log(e)
+    // }
+
+    const connection = pgp()("postgresql://getrak:getrak@localhost:5432/postgres");
+    const ridesData = await connection.query(
+      "select * from cccat13.ride where passenger_id = $1 and status in ('requested', 'accepted', 'in_progress')",
+      [passengerId]
+    );
+    await connection.$pool.end();
+    
+    return ridesData
   }
 }
