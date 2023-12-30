@@ -1,10 +1,6 @@
 import AccountService from "../src/AccountService";
 import RideService from "../src/RideService";
 
-// beforeEach(() => {
-//   jest.useFakeTimers()
-// })
-
 test("Deve solicitar uma corrida e receber uma rideId", async function () {
   const inputSignup: any = {
 		name: "John Doe",
@@ -17,7 +13,7 @@ test("Deve solicitar uma corrida e receber uma rideId", async function () {
 	const outputSignup = await accountService.signup(inputSignup);
 
   const inputRequestRide = {
-    passangerId: outputSignup.accountId,
+    passengerId: outputSignup.accountId,
     from: {
       lat: -19.839982762067386,
       long: -43.95080005999862,
@@ -138,7 +134,7 @@ test("Caso uma corrida seja solicitada por uma conta que não seja de passageiro
     .rejects.toThrow(new Error('Account is not from a passenger'))
 })
 
-test.only("Caso uma corrida seja solicitada por um passageiro e ele já tenha outra corrida em andamento deve lançar um erro", async function () {
+test("Caso uma corrida seja solicitada por um passageiro e ele já tenha outra corrida em andamento deve lançar um erro", async function () {
   const inputSignup: any = {
 		name: "John Doe",
 		email: `john.doe${Math.random()}@gmail.com`,
@@ -164,4 +160,46 @@ test.only("Caso uma corrida seja solicitada por um passageiro e ele já tenha ou
   await rideService.requestRide(inputRequestRide)
   await expect(() => rideService.requestRide(inputRequestRide))
     .rejects.toThrow(new Error('This passenger already has a not completed'))
+})
+
+
+test("Não deve aceitar uma corrida se a account não for driver", async function () {
+  const accountService = new AccountService();
+
+  const inputSignupPassenger: any = {
+		name: "John Doe",
+		email: `john.doe${Math.random()}@gmail.com`,
+		cpf: "95818705552",
+		isPassenger: true
+	}
+	const outputSignupPassenger = await accountService.signup(inputSignupPassenger);
+
+  const inputSignupDriver: any = {
+		name: "John Doe",
+		email: `john.doe${Math.random()}@gmail.com`,
+		cpf: "95818705552",
+		isPassenger: true,
+	}
+	const outputSignupDriver = await accountService.signup(inputSignupDriver);
+
+  const inputRequestRide = {
+    passengerId: outputSignupPassenger.accountId,
+    from: {
+      lat: -19.839982762067386,
+      long: -43.95080005999862,
+    }, 
+    to: {
+      lat: -19.837812973735687,
+      long: -43.94836456508952
+    }
+  }
+
+  const rideService = new RideService()
+  const outputRequestRide = await rideService.requestRide(inputRequestRide)
+  const inputAcceptRide = {
+    rideId: outputRequestRide.rideId,
+    driverId: outputSignupDriver.accountId,
+  }
+  await expect(() => rideService.acceptRide(inputAcceptRide))
+    .rejects.toThrow('Account is not from a driver')
 })

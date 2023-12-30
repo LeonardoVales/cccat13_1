@@ -47,17 +47,29 @@ export default class RideService {
 
   async getRide(rideId: string) {
     const ride = await this.rideDAO.getById(rideId)
-    // console.log('aqui', ride)
     return ride
   }
 
   async acceptRide (input: any) {
+    const account = await this.accountDAO.getById(input.driverId)
+    if (!account.is_driver) {
+      throw new Error('Account is not from a driver')
+    }
+
     const ride = await this.getRide(input.rideId)
-    // console.log(ride)
+    if (ride.status !== 'requested') {
+      throw new Error('The ride is not requested')
+    }
+
+    const activeRides = await this.rideDAO.getActiveRidesByDriverId(input.driverId)
+    if (activeRides.length > 0) {
+      throw new Error('Driver is already in another ride')
+    }
+
     ride.driverId = input.driverId
     ride.rideId = input.rideId
     ride.status = 'accepted'
-    // console.log(ride)
+
     await this.rideDAO.update(ride)
   }
 }

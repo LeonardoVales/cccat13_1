@@ -35,27 +35,24 @@ export default class RideDAODatabase implements RideDAO {
   }
 
   async getActiveRidesByPassengerId(passengerId: string) {
-
-    // try {
-    //   const connection = pgp()("postgresql://getrak:getrak@localhost:5432/postgres");
-    //   const ridesData = await connection.query(
-    //     "select * from cccat13.ride where passenger_id = $1 and status in ('requested', 'accepted', 'in_progress')",
-    //     [passengerId]
-    //   );
-    //   await connection.$pool.end();
-      
-    //   return ridesData
-    // } catch(e) {
-    //   console.log(e)
-    // }
-
     const connection = pgp()("postgresql://getrak:getrak@localhost:5432/postgres");
     const ridesData = await connection.query(
       "select * from cccat13.ride where passenger_id = $1 and status in ('requested', 'accepted', 'in_progress')",
       [passengerId]
     );
     await connection.$pool.end();
-    
+
+    return ridesData
+  }
+
+  async getActiveRidesByDriverId(driverId: string) {
+    const connection = pgp()("postgresql://getrak:getrak@localhost:5432/postgres");
+    const ridesData = await connection.query(
+      "select * from cccat13.ride where passenger_id = $1 and status in ('accepted', 'in_progress')",
+      [driverId]
+    );
+    await connection.$pool.end();
+
     return ridesData
   }
 }
