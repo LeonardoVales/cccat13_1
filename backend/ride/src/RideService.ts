@@ -3,6 +3,7 @@ import RideDAO from './RideDAO'
 import RideDAODatabase from './RideDAODatabase'
 import AccountDAO from './AccountDAO'
 import AccountDAODatabase from './AccountDAODatabase'
+import Ride from './Ride'
 
 export default class RideService {
   //inversão de dependência
@@ -23,25 +24,11 @@ export default class RideService {
       throw new Error('This passenger already has a not completed')
     }
 
-    const rideId = crypto.randomUUID()
-    const ride = {
-      rideId,
-      passengerId: input.passengerId,
-      status: "requested",
-      date: new Date(),
-      from: {
-        lat: input.from.lat,
-        long: input.from.long,
-      },
-      to: {
-        lat: input.to.lat,
-        long: input.to.long,
-      }
-    }
+    const ride = Ride.create(input.passengerId, input.fromLat, input.fromLong, input.toLat, input.toLong)
 
     await this.rideDAO.save(ride)
     return {
-      rideId
+      rideId: ride.rideId,
     }
   }
 
