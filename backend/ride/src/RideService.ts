@@ -15,10 +15,16 @@ export default class RideService {
   }
 
   async requestRide(input: any) {
+    // Essa validação aqui não deve ficar dentro da Ride
+    // Pois eu não tenho account dentro da Ride.
+    // Isso aqui sim é uma regra do useCase
     const account = await this.accountDAO.getById(input.passengerId)
     if (!account.is_passenger) {
       throw new Error('Account is not from a passenger')
     }
+
+    //Essa regra também não é responsabilidade da Ride
+    // A ride não tem que saber se existem outras corridas ou não
     const activeRides = await this.rideDAO.getActiveRidesByPassengerId(input.passengerId)
     if (activeRides.length > 0) {
       throw new Error('This passenger already has a not completed')
@@ -45,7 +51,7 @@ export default class RideService {
 
     const ride = await this.getRide(input.rideId)
     ride.accept(input.driverId)
-    
+
     const activeRides = await this.rideDAO.getActiveRidesByDriverId(input.driverId)
     if (activeRides.length > 0) {
       throw new Error('Driver is already in another ride')
