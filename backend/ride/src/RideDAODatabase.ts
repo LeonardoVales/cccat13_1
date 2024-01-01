@@ -31,7 +31,6 @@ export default class RideDAODatabase implements RideDAO {
     const connection = pgp()("postgresql://getrak:getrak@localhost:5432/postgres");
     const [rideData] = await connection.query("select * from cccat13.ride where ride_id = $1", [rideId]);
     await connection.$pool.end();
-
     return Ride.restore(
       rideData.ride_id,
       rideData.passenger_id,

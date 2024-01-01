@@ -30,7 +30,13 @@ export default class RideService {
       throw new Error('This passenger already has a not completed')
     }
 
-    const ride = Ride.create(input.passengerId, input.fromLat, input.fromLong, input.toLat, input.toLong)
+    const ride = Ride.create(
+      input.passengerId, 
+      input.from.lat, 
+      input.from.long, 
+      input.to.lat, 
+      input.to.long
+    )
 
     await this.rideDAO.save(ride)
     return {
