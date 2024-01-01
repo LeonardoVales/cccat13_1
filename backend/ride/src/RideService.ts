@@ -44,18 +44,14 @@ export default class RideService {
     }
 
     const ride = await this.getRide(input.rideId)
-    if (ride.status !== 'requested') {
-      throw new Error('The ride is not requested')
-    }
-
+    ride.accept(input.driverId)
+    
     const activeRides = await this.rideDAO.getActiveRidesByDriverId(input.driverId)
     if (activeRides.length > 0) {
       throw new Error('Driver is already in another ride')
     }
 
-    ride.driverId = input.driverId
-    ride.rideId = input.rideId
-    ride.status = 'accepted'
+    
 
     await this.rideDAO.update(ride)
   }
