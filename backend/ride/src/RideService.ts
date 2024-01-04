@@ -19,7 +19,7 @@ export default class RideService {
     // Pois eu não tenho account dentro da Ride.
     // Isso aqui sim é uma regra do useCase
     const account = await this.accountDAO.getById(input.passengerId)
-    if (!account.is_passenger) {
+    if (!account?.isPassenger) {
       throw new Error('Account is not from a passenger')
     }
 
@@ -51,7 +51,7 @@ export default class RideService {
 
   async acceptRide (input: any) {
     const account = await this.accountDAO.getById(input.driverId)
-    if (!account.is_driver) {
+    if (!account?.isDriver) {
       throw new Error('Account is not from a driver')
     }
 

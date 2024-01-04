@@ -3,7 +3,7 @@ import CpfValidator from './CpfValidator';
 
 export default class Account {
 
-  constructor(
+  private constructor(
     readonly accountId: string,
     readonly name: string,
     readonly email: string,
@@ -36,6 +36,30 @@ export default class Account {
     const verificationCode = crypto.randomUUID()
     const date = new Date()
 
+    return new Account(
+      accountId,
+      name,
+      email,
+      cpf,
+      isPassenger,
+      isDriver,
+      carPlate,
+      date,
+      verificationCode,
+    )
+  }
+
+  static restore(
+    accountId: string,
+    name: string, 
+    email: string, 
+    cpf: string, 
+    isPassenger: boolean,
+    isDriver: boolean,
+    carPlate: string,
+    date: Date,
+    verificationCode: string,
+  ) {
     return new Account(
       accountId,
       name,

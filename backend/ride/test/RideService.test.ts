@@ -28,7 +28,7 @@ test("Deve solicitar uma corrida e receber uma rideId", async function () {
   expect(outputRequestRide.rideId).toBeDefined()
 })
 
-test.only("Deve solicitar e consultar uma corrida", async function () {
+test("Deve solicitar e consultar uma corrida", async function () {
   const inputSignup: any = {
 		name: "John Doe",
 		email: `john.doe${Math.random()}@gmail.com`,
