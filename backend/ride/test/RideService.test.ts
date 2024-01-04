@@ -1,4 +1,6 @@
 import AccountService from "../src/AccountService";
+import GetRide from "../src/GetRide";
+import RequestRide from "../src/RequestRide";
 import RideService from "../src/RideService";
 
 test("Deve solicitar uma corrida e receber uma rideId", async function () {
@@ -23,8 +25,8 @@ test("Deve solicitar uma corrida e receber uma rideId", async function () {
       long: -43.94836456508952
     }
   }
-  const rideService = new RideService()
-  const outputRequestRide = await rideService.requestRide(inputRequestRide)
+  const requestRide = new RequestRide()
+  const outputRequestRide = await requestRide.execute(inputRequestRide)
   expect(outputRequestRide.rideId).toBeDefined()
 })
 
@@ -50,9 +52,10 @@ test("Deve solicitar e consultar uma corrida", async function () {
     }
   }
 
-  const rideService = new RideService()
-  const outputRequestRide = await rideService.requestRide(inputRequestRide)
-  const outputGetRide = await rideService.getRide(outputRequestRide.rideId)
+  const requestRide = new RequestRide()
+  const getRide = new GetRide()
+  const outputRequestRide = await requestRide.execute(inputRequestRide)
+  const outputGetRide = await getRide.execute(outputRequestRide.rideId)
   expect(outputGetRide.getStatus()).toBe("requested")
   expect(outputGetRide.passengerId).toBe(outputSignup.accountId)
   expect(outputGetRide.fromLat).toBe(inputRequestRide.from.lat)
