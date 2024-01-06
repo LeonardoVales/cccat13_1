@@ -1,7 +1,21 @@
+import AcceptRide from "../src/AcceptRide";
 import AccountService from "../src/AccountService";
 import GetRide from "../src/GetRide";
 import RequestRide from "../src/RequestRide";
 import RideService from "../src/RideService";
+import Signup from "../src/Signup";
+
+let signup: Signup
+let requestRide: RequestRide
+let acceptRide: AcceptRide
+let getRide: GetRide
+
+beforeEach(() => {
+  signup = new Signup()
+  requestRide = new RequestRide(),
+  acceptRide = new AcceptRide()
+  getRide = new GetRide()
+})
 
 test("Deve solicitar uma corrida e receber uma rideId", async function () {
   const inputSignup: any = {
@@ -25,7 +39,7 @@ test("Deve solicitar uma corrida e receber uma rideId", async function () {
       long: -43.94836456508952
     }
   }
-  const requestRide = new RequestRide()
+  // const requestRide = new RequestRide()
   const outputRequestRide = await requestRide.execute(inputRequestRide)
   expect(outputRequestRide.rideId).toBeDefined()
 })
@@ -52,8 +66,8 @@ test("Deve solicitar e consultar uma corrida", async function () {
     }
   }
 
-  const requestRide = new RequestRide()
-  const getRide = new GetRide()
+  // const requestRide = new RequestRide()
+  // const getRide = new GetRide()
   const outputRequestRide = await requestRide.execute(inputRequestRide)
   const outputGetRide = await getRide.execute(outputRequestRide.rideId)
   expect(outputGetRide.getStatus()).toBe("requested")

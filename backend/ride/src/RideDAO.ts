@@ -1,5 +1,6 @@
 import Ride from "./Ride"
 
+// Na arquitetura limpa, isso é um interface adapter
 export default interface RideDAO {
   save(ride: Ride): Promise<void>
   update(ride: any): Promise<void>
