@@ -20,8 +20,8 @@ type Input = {
 export default class RequestRide {
   //inversão de dependência
   constructor(
-    readonly rideDAO: RideDAO = new RideDAODatabase(),
-    readonly accountDAO: AccountDAO = new AccountDAODatabase()
+    readonly rideDAO: RideDAO,
+    readonly accountDAO: AccountDAO,
   ) {
 
   }

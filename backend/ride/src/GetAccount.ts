@@ -1,10 +1,9 @@
-import AccountDAODatabase from "./AccountDAODatabase";
-import AccountDAO from "./AccountDAODatabase";
+import AccountDAO from "./AccountDAO";
 
 export default class GetAccount {
 
 	// criando uma porta para que um ou mais adapters implementem, permitindo ue eu varie o comportamento
-	constructor (readonly accountDAO: AccountDAO = new AccountDAODatabase()) {
+	constructor (readonly accountDAO: AccountDAO) {
 
 	}
 

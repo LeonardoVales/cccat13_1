@@ -4,7 +4,7 @@ import RideDAODatabase from './RideDAODatabase'
 export default class GetRide {
   //inversão de dependência
   constructor(
-    readonly rideDAO: RideDAO = new RideDAODatabase(),
+    readonly rideDAO: RideDAO,
   ) {
 
   }

@@ -12,8 +12,8 @@ type Input = {
 export default class AcceptRide {
   //inversão de dependência
   constructor(
-    readonly rideDAO: RideDAO = new RideDAODatabase(),
-    readonly accountDAO: AccountDAO = new AccountDAODatabase()
+    readonly rideDAO: RideDAO,
+    readonly accountDAO: AccountDAO,
   ) {
 
   }

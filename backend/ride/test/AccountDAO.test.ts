@@ -1,8 +1,22 @@
 import Account from '../src/Account'
+import AccountDAODatabase from '../src/AccountDAODatabase'
 import AccountDAO from "../src/AccountDAODatabase"
+import Connection from '../src/Connection'
+import PgPromiseAdapter from '../src/PgPromiseAdapter'
+
+let connection: Connection
+let accountDAO: AccountDAO
+
+beforeEach(() => {
+  connection = new PgPromiseAdapter()
+  accountDAO = new AccountDAODatabase(connection)
+})
+
+afterEach(async function () {
+  await connection.close()
+})
 
 test("Deve criar um registro na tabela account e consultar por email", async function () {
-  const accountDAO = new AccountDAO()
   const account = Account.create(
     "John Doe",
     `john.doe${Math.random()}@gmail.com`,
@@ -24,7 +38,6 @@ test("Deve criar um registro na tabela account e consultar por email", async fun
 })
 
 test("Deve criar um registro na tabela account e consultar por account Id", async function () {
-  const accountDAO = new AccountDAO()
   const account = Account.create(
     "John Doe",
     `john.doe${Math.random()}@gmail.com`,

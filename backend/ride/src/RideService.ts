@@ -7,8 +7,8 @@ import Ride from './Ride'
 export default class RideService {
   //inversão de dependência
   constructor(
-    readonly rideDAO: RideDAO = new RideDAODatabase(),
-    readonly accountDAO: AccountDAO = new AccountDAODatabase()
+    readonly rideDAO: RideDAO,
+    readonly accountDAO: AccountDAO,
   ) {
 
   }

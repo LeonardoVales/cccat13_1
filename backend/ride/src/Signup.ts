@@ -1,6 +1,5 @@
 import Account from "./Account";
-import AccountDAODatabase from "./AccountDAODatabase";
-import AccountDAO from "./AccountDAODatabase";
+import AccountDAO from "./AccountDAO";
 import CpfValidator from "./CpfValidator";
 import MailerGateway from "./MailerGateway";
 
@@ -18,7 +17,7 @@ export default class Signup {
 	mailerGateway: MailerGateway;
 
 	// criando uma porta para que um ou mais adapters implementem, permitindo ue eu varie o comportamento
-	constructor (readonly accountDAO: AccountDAO = new AccountDAODatabase()) {
+	constructor (readonly accountDAO: AccountDAO) {
 		this.cpfValidator = new CpfValidator();
 		this.mailerGateway = new MailerGateway()
 	}
