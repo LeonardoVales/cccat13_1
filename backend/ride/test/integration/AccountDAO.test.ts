@@ -1,8 +1,8 @@
-import Account from '../src/Account'
-import AccountDAODatabase from '../src/AccountDAODatabase'
-import AccountDAO from "../src/AccountDAODatabase"
-import Connection from '../src/Connection'
-import PgPromiseAdapter from '../src/PgPromiseAdapter'
+import Account from '../../src/domain/Account'
+import AccountDAODatabase from '../../src/infra/repository/AccountDAODatabase'
+import AccountDAO from "../../src/infra/repository/AccountDAODatabase"
+import Connection from '../../src/infra/database/Connection'
+import PgPromiseAdapter from '../../src/infra/database/PgPromiseAdapter'
 
 let connection: Connection
 let accountDAO: AccountDAO

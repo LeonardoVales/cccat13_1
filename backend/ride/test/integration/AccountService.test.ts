@@ -1,16 +1,16 @@
 //driver
 // import AccountService from "../src/AccountService";
 import sinon from 'sinon'
-import AccountDAO from "../src/AccountDAODatabase";
-import MailerGateway from "../src/MailerGateway";
-import AccountDAOMemory from "../src/AccountDAOMemory";
-import Account from "../src/Account";
-import Connection from '../src/Connection';
-import RideDAO from '../src/RideDAO';
-import Signup from '../src/application/usecase/Signup';
-import GetAccount from '../src/application/usecase/GetAccount';
-import PgPromiseAdapter from '../src/PgPromiseAdapter';
-import RideDAODatabase from '../src/RideDAODatabase';
+import AccountDAO from "../../src/infra/repository/AccountDAODatabase";
+import MailerGateway from "../../src/infra/gateway/MailerGateway";
+import AccountDAOMemory from "../../src/infra/repository/AccountDAOMemory";
+import Account from "../../src/domain/Account";
+import Connection from '../../src/infra/database/Connection';
+import RideDAO from '../../src/application/repository/RideDAO';
+import Signup from '../../src/application/usecase/Signup';
+import GetAccount from '../../src/application/usecase/GetAccount';
+import PgPromiseAdapter from '../../src/infra/database/PgPromiseAdapter';
+import RideDAODatabase from '../../src/infra/repository/RideDAODatabase';
 
 let connection: Connection
 let accountDAO: AccountDAO

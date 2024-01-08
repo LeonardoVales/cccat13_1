@@ -1,9 +1,9 @@
 // resource
 // adapter
 import pgp from "pg-promise";
-import Account from "./Account";
-import AccountDAO from "./AccountDAO";
-import Connection from "./Connection";
+import Account from "../../domain/Account";
+import AccountDAO from "../../application/repository/AccountDAO";
+import Connection from "../database/Connection";
 
 export default class AccountDAODatabase implements AccountDAO {
   constructor(readonly connection: Connection) {

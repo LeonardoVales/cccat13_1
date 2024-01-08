@@ -1,8 +1,8 @@
-import RideDAO from '../../RideDAO'
-import RideDAODatabase from '../../RideDAODatabase'
-import AccountDAO from '../../AccountDAO'
-import AccountDAODatabase from '../../AccountDAODatabase'
-import Ride from '../../Ride'
+import RideDAO from '../repository/RideDAO'
+import RideDAODatabase from '../../infra/repository/RideDAODatabase'
+import AccountDAO from '../repository/AccountDAO'
+import AccountDAODatabase from '../../infra/repository/AccountDAODatabase'
+import Ride from '../../domain/Ride'
 
 // Um contrato de entrada
 type Input = {

@@ -1,4 +1,4 @@
-import Account from "./Account"
+import Account from "../../domain/Account"
 
 // port
 export default interface AccountDAO {

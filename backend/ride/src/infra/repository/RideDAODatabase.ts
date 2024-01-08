@@ -1,9 +1,9 @@
 // resource
 // adapter
 import pgp from "pg-promise";
-import Connection from "./Connection";
-import Ride from "./Ride";
-import RideDAO from "./RideDAO";
+import Connection from "../database/Connection";
+import Ride from "../../domain/Ride";
+import RideDAO from "../../application/repository/RideDAO";
 
 export default class RideDAODatabase implements RideDAO {
   constructor(readonly connection: Connection) {

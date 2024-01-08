@@ -1,4 +1,4 @@
-import Ride from "./Ride"
+import Ride from "../../domain/Ride"
 
 // Na arquitetura limpa, isso é um interface adapter
 export default interface RideDAO {

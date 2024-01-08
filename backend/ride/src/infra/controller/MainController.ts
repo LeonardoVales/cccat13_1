@@ -1,6 +1,6 @@
-import GetAccount from "./application/usecase/GetAccount";
-import HttpServer from "./HttpServer";
-import Signup from "./application/usecase/Signup";
+import GetAccount from "../../application/usecase/GetAccount";
+import HttpServer from "../http/HttpServer";
+import Signup from "../../application/usecase/Signup";
 
 // interface adapter
 export default class MainController {

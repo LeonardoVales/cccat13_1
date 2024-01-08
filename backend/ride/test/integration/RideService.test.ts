@@ -1,13 +1,13 @@
-import AcceptRide from "../src/application/usecase/AcceptRide";
-import AccountDAO from "../src/AccountDAO";
-import AccountDAODatabase from "../src/AccountDAODatabase";
-import Connection from "../src/Connection";
-import GetRide from "../src/application/usecase/GetRide";
-import PgPromiseAdapter from "../src/PgPromiseAdapter";
-import RequestRide from "../src/application/usecase/RequestRide";
-import RideDAO from "../src/RideDAO";
-import RideDAODatabase from "../src/RideDAODatabase";
-import Signup from "../src/application/usecase/Signup";
+import AcceptRide from "../../src/application/usecase/AcceptRide";
+import AccountDAO from "../../src/application/repository/AccountDAO";
+import AccountDAODatabase from "../../src/infra/repository/AccountDAODatabase";
+import Connection from "../../src/infra/database/Connection";
+import GetRide from "../../src/application/usecase/GetRide";
+import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
+import RequestRide from "../../src/application/usecase/RequestRide";
+import RideDAO from "../../src/application/repository/RideDAO";
+import RideDAODatabase from "../../src/infra/repository/RideDAODatabase";
+import Signup from "../../src/application/usecase/Signup";
 
 let signup: Signup
 let requestRide: RequestRide
