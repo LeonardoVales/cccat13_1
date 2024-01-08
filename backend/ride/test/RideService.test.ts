@@ -1,13 +1,13 @@
-import AcceptRide from "../src/AcceptRide";
+import AcceptRide from "../src/application/usecase/AcceptRide";
 import AccountDAO from "../src/AccountDAO";
 import AccountDAODatabase from "../src/AccountDAODatabase";
 import Connection from "../src/Connection";
-import GetRide from "../src/GetRide";
+import GetRide from "../src/application/usecase/GetRide";
 import PgPromiseAdapter from "../src/PgPromiseAdapter";
-import RequestRide from "../src/RequestRide";
+import RequestRide from "../src/application/usecase/RequestRide";
 import RideDAO from "../src/RideDAO";
 import RideDAODatabase from "../src/RideDAODatabase";
-import Signup from "../src/Signup";
+import Signup from "../src/application/usecase/Signup";
 
 let signup: Signup
 let requestRide: RequestRide

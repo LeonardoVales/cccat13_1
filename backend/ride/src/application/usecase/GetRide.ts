@@ -1,5 +1,5 @@
-import RideDAO from './RideDAO'
-import RideDAODatabase from './RideDAODatabase'
+import RideDAO from '../../RideDAO'
+import RideDAODatabase from '../../RideDAODatabase'
 
 export default class GetRide {
   //inversão de dependência

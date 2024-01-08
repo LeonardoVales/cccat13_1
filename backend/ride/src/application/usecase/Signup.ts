@@ -1,7 +1,7 @@
-import Account from "./Account";
-import AccountDAO from "./AccountDAO";
-import CpfValidator from "./CpfValidator";
-import MailerGateway from "./MailerGateway";
+import Account from "../../Account";
+import AccountDAO from "../../AccountDAO";
+import CpfValidator from "../../CpfValidator";
+import MailerGateway from "../../MailerGateway";
 
 type Input = {
 	name: string,

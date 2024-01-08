@@ -3,10 +3,10 @@
 import express from 'express'
 import AccountDAODatabase from './AccountDAODatabase'
 import ExpressAdapter from './ExpressAdapter'
-import GetAccount from './GetAccount'
+import GetAccount from './application/usecase/GetAccount'
 import MainController from './MainController'
 import PgPromiseAdapter from './PgPromiseAdapter'
-import Signup from './Signup'
+import Signup from './application/usecase/Signup'
 
 const app = express()
 const connection = new PgPromiseAdapter()

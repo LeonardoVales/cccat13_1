@@ -1,8 +1,8 @@
-import RideDAO from './RideDAO'
-import RideDAODatabase from './RideDAODatabase'
-import AccountDAO from './AccountDAO'
-import AccountDAODatabase from './AccountDAODatabase'
-import Ride from './Ride'
+import RideDAO from '../../RideDAO'
+import RideDAODatabase from '../../RideDAODatabase'
+import AccountDAO from '../../AccountDAO'
+import AccountDAODatabase from '../../AccountDAODatabase'
+import Ride from '../../Ride'
 
 type Input = {
   rideId: string,
