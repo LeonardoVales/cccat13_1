@@ -55,7 +55,12 @@ export default class Ride {
     this.status = 'accepted'
   }
 
+  start() {
+    this.status = 'in_progress'
+  }
+
   getStatus() {
     return this.status
   }
+
 }
