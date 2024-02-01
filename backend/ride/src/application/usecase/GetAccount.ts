@@ -8,8 +8,29 @@ export default class GetAccount {
 	}
 
 	//port
-	async execute (accountId: string) {
+	async execute (accountId: string): Promise<Output> {
 		const account = await this.accountDAO.getById(accountId)
-		return account;
+		if (!account) {
+			throw new Error('Account is not found')
+		}
+		return {
+			name: account?.name,
+			accountId: accountId,
+			email: account.email,
+			cpf: account.cpf.getValue(),
+			carPlate: account.carPlate,
+			isPassenger: account.isPassenger,
+			isDriver: account.isDriver,
+		}
 	}
+}
+
+type Output = {
+	accountId: string,
+	name: string,
+	email: string,
+	cpf: string,
+	carPlate: string,
+	isPassenger: boolean,
+	isDriver: boolean,
 }

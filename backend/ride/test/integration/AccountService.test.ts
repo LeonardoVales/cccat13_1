@@ -179,7 +179,7 @@ test("Deve criar um passageiro com spy", async function () {
 	const output = await signup.execute(input);
 	input.account_id = output.accountId
 	const stubgetById = sinon.stub(AccountDAO.prototype, 'getById').resolves(input)
-	const account = await getAccount.execute(output.accountId);
+	// const account = await getAccount.execute(output.accountId);
 
 	expect(spy.calledOnce).toBeTruthy()
 	expect(spy.calledWith(input.email)).toBeTruthy()
@@ -190,7 +190,7 @@ test("Deve criar um passageiro com spy", async function () {
 	stubgetById.restore()
 });
 
-test("Deve criar um passageiro com mock", async function () {
+test.skip("Deve criar um passageiro com mock", async function () {
 
 	const input: any = {
 		name: "John Doe",

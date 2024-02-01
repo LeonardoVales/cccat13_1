@@ -1,5 +1,5 @@
 import crypto from 'crypto'
-import CpfValidator from './CpfValidator';
+import Cpf from './Cpf';
 
 export default class Account {
 
@@ -7,7 +7,7 @@ export default class Account {
     readonly accountId: string,
     readonly name: string,
     readonly email: string,
-    readonly cpf: string,
+    readonly cpf: Cpf,
     readonly isPassenger: boolean,
     readonly isDriver: boolean,
     readonly carPlate: string,
@@ -28,8 +28,6 @@ export default class Account {
 
     if (!name.match(/[a-zA-Z] [a-zA-Z]+/)) throw new Error("Invalid name");
     if (!email.match(/^(.+)@(.+)$/)) throw new Error("Invalid email");
-    const cpfValidator = new CpfValidator()
-    if (!cpfValidator.validate(cpf)) throw new Error("Invalid cpf");
     if (isDriver && !carPlate.match(/[A-Z]{3}[0-9]{4}/)) throw new Error("Invalid plate");
 
     const accountId = crypto.randomUUID()
@@ -40,7 +38,7 @@ export default class Account {
       accountId,
       name,
       email,
-      cpf,
+      new Cpf(cpf),
       isPassenger,
       isDriver,
       carPlate,
@@ -64,7 +62,7 @@ export default class Account {
       accountId,
       name,
       email,
-      cpf,
+      new Cpf(cpf),
       isPassenger,
       isDriver,
       carPlate,

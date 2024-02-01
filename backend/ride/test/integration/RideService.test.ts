@@ -27,7 +27,7 @@ beforeEach(() => {
   requestRide = new RequestRide(rideDAO, accountDAO)
   acceptRide = new AcceptRide(rideDAO, accountDAO)
   startRide = new StartRide(rideDAO)
-  getRide = new GetRide(rideDAO)
+  getRide = new GetRide(rideDAO, accountDAO)
 })
 
 afterEach( async function () {

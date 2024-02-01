@@ -56,6 +56,9 @@ export default class Ride {
   }
 
   start() {
+    if (this.status !== 'accepted') {
+      throw new Error('The ride is not accepted')
+    }
     this.status = 'in_progress'
   }
 
