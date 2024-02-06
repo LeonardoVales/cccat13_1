@@ -14,7 +14,7 @@ export default class RideDAODatabase implements RideDAO {
     // const connection = pgp()("postgresql://getrak:getrak@localhost:5432/postgres");
     await this.connection.query(
       "insert into cccat13.ride (ride_id, passenger_id, from_lat, from_long, to_lat, to_long, status, date) values ($1, $2, $3, $4, $5, $6, $7, $8)",
-      [ride.rideId, ride.passengerId, ride.fromLat, ride.fromLong, ride.toLat, ride.toLong, ride.getStatus(), ride.date]
+      [ride.rideId, ride.passengerId, ride.from.getLat(), ride.from.getLong(), ride.to.getLat(), ride.to.getLong(), ride.getStatus(), ride.date]
     );
     // await connection.$pool.end();
   }
