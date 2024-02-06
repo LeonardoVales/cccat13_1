@@ -27,11 +27,11 @@ test("Deve criar um registro na tabela account e consultar por email", async fun
   )
 
   await accountDAO.save(account)
-  const savedAccount = await accountDAO.getByEmail(account.email)
+  const savedAccount = await accountDAO.getByEmail(account.email.getValue())
 
   expect(savedAccount?.accountId).toBeDefined()
-  expect(savedAccount?.name).toBe(account.name)
-  expect(savedAccount?.email).toBe(account.email)
+  expect(savedAccount?.name.getValue()).toBe(account.name.getValue())
+  expect(savedAccount?.email.getValue()).toBe(account.email.getValue())
   expect(savedAccount?.cpf.getValue()).toBe(account.cpf.getValue())
   expect(savedAccount?.isPassenger).toBeTruthy()
   expect(savedAccount?.date).toBeDefined()
@@ -51,8 +51,8 @@ test("Deve criar um registro na tabela account e consultar por account Id", asyn
   const savedAccount = await accountDAO.getById(account.accountId)
 
   expect(savedAccount?.accountId).toBeDefined()
-  expect(savedAccount?.name).toBe(account.name)
-  expect(savedAccount?.email).toBe(account.email)
+  expect(savedAccount?.name.getValue()).toBe(account.name.getValue())
+  expect(savedAccount?.email.getValue()).toBe(account.email.getValue())
   expect(savedAccount?.cpf.getValue()).toBe(account.cpf.getValue())
   expect(savedAccount?.isPassenger).toBeTruthy()
   expect(savedAccount?.date).toBeDefined()

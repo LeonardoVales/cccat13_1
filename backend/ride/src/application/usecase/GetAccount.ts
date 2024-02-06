@@ -14,11 +14,11 @@ export default class GetAccount {
 			throw new Error('Account is not found')
 		}
 		return {
-			name: account?.name,
+			name: account?.name.getValue(),
 			accountId: accountId,
-			email: account.email,
+			email: account.email.getValue(),
 			cpf: account.cpf.getValue(),
-			carPlate: account.carPlate,
+			carPlate: account.carPlate.getValue(),
 			isPassenger: account.isPassenger,
 			isDriver: account.isDriver,
 		}

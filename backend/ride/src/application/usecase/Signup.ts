@@ -35,7 +35,7 @@ export default class Signup {
 			input.carPlate
 		)
 		await this.accountDAO.save(account)
-		await this.mailerGateway.send(account.email, "Verification", `Please verify your code at first login ${account.verificationCode}`);
+		await this.mailerGateway.send(account.email.getValue(), "Verification", `Please verify your code at first login ${account.verificationCode}`);
 		return {
 			accountId: account.accountId
 		}
