@@ -23,15 +23,17 @@ export default class AcceptRide {
     if (!account?.isDriver) {
       throw new Error('Account is not from a driver')
     }
-
+    
     const ride = await this.rideDAO.getById(input.rideId)
     ride.accept(input.driverId)
-
+  
     const activeRides = await this.rideDAO.getActiveRidesByDriverId(input.driverId)
     if (activeRides.length > 0) {
       throw new Error('Driver is already in another ride')
     }
-
+    
     await this.rideDAO.update(ride)
+
+    console.log('testestesteste')
   }
 }

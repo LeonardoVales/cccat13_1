@@ -23,7 +23,7 @@ export default class RideDAODatabase implements RideDAO {
     // const connection = pgp()("postgresql://getrak:getrak@localhost:5432/postgres");
     await this.connection.query(
       "update cccat13.ride set driver_id = $1, status = $2 where ride_id = $3",
-      [ride.driverId, ride.status, ride.rideId]
+      [ride.driverId, ride.status.value, ride.rideId]
     );
     // await connection.$pool.end();
   }

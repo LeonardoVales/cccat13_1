@@ -15,7 +15,7 @@ export default class StartRide {
   async execute (input: Input) {
     const ride = await this.rideDAO.getById(input.rideId)
     ride.start()
-
+  
     await this.rideDAO.update(ride)
   }
 }

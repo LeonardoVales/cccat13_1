@@ -108,7 +108,6 @@ test("Deve solicitar uma corrida e aceitar uma corrida", async function () {
 	}
 	const outputSignupDriver = await signup.execute(inputSignupDriver);
 
-
   const inputRequestRide = {
     passengerId: outputSignupPassenger.accountId,
     from: {
@@ -130,7 +129,6 @@ test("Deve solicitar uma corrida e aceitar uma corrida", async function () {
   const outputGetRide = await getRide.execute(outputRequestRide.rideId)
   expect(outputGetRide.status).toBe('accepted')
   expect(outputGetRide.driverId).toBe(outputSignupDriver.accountId)
-
 })
 
 test("Caso uma corrida seja solicitada por uma conta que não seja de passageiro deve lançar um erro", async function () {
@@ -271,5 +269,4 @@ test("Deve solicitar uma corrida, aceitar, e iniciar uma corrida", async functio
   const outputGetRide = await getRide.execute(outputRequestRide.rideId)
   expect(outputGetRide.status).toBe('in_progress')
   expect(outputGetRide.driverId).toBe(outputSignupDriver.accountId)
-
 })

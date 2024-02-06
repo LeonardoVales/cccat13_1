@@ -1,23 +1,21 @@
 import crypto from 'crypto'
 import Coord from './Coord'
+import Status, { StatusFactory } from './Status'
 
 export default class Ride {
 
   driverId?: string
+  status: Status
 
   private constructor(
     readonly rideId: string,
     readonly passengerId: string,
-    private status: string,
+    status: string,
     readonly from: Coord,
     readonly to: Coord,
-    // readonly fromLat: number,
-    // readonly fromLong: number,
-    // readonly toLat: number,
-    // readonly toLong: number,
     readonly date: Date,
   ) {
-
+    this.status = StatusFactory.create(this, status)
   }
 
   static create(
@@ -50,23 +48,20 @@ export default class Ride {
   }
 
   accept(driverId: string) {
-    if (this.status !== 'requested') {
-      throw new Error('The ride is not requested')
-    }
-
     this.driverId = driverId
-    this.status = 'accepted'
+    this.status.accept()
   }
 
   start() {
-    if (this.status !== 'accepted') {
-      throw new Error('The ride is not accepted')
-    }
-    this.status = 'in_progress'
+    this.status.start()
+  }
+
+  finish() {
+    this.status.finish()
   }
 
   getStatus() {
-    return this.status
+    return this.status.value
   }
 
 }
