@@ -28,6 +28,7 @@ export default class GetRide {
       toLong: ride.to.getLong(),
       date: ride.date,
       status: ride.getStatus(),
+      distance: ride.getDisntace(),
       passenger: {
         accountId: account.accountId,
         name: account.name.getValue(),
@@ -51,6 +52,7 @@ type Output = {
   toLong: number,
   date: Date,
   status: string,
+  distance: number,
   passenger: {
     accountId: string,
     name: string,

@@ -1,11 +1,15 @@
 import crypto from 'crypto'
 import Coord from './Coord'
+import DistanceCalculator from './DistanceCalculator'
+import Position from './Position'
 import Status, { StatusFactory } from './Status'
 
 export default class Ride {
 
   driverId?: string
   status: Status
+  positions: Position[]
+  
 
   private constructor(
     readonly rideId: string,
@@ -14,8 +18,10 @@ export default class Ride {
     readonly from: Coord,
     readonly to: Coord,
     readonly date: Date,
+    private distance: number
   ) {
     this.status = StatusFactory.create(this, status)
+    this.positions = []
   }
 
   static create(
@@ -28,7 +34,7 @@ export default class Ride {
     const rideId = crypto.randomUUID()
     const status = 'requested'
     const date = new Date()
-    return new Ride(rideId, passengerId, status, new Coord(fromLat, fromLong), new Coord(toLat, toLong), date)
+    return new Ride(rideId, passengerId, status, new Coord(fromLat, fromLong), new Coord(toLat, toLong), date, 0)
   }
 
   static restore(
@@ -41,8 +47,9 @@ export default class Ride {
     toLat: number,
     toLong: number,
     date: Date,
+    distance: number,
   ) {
-    const ride = new Ride(rideId, passengerId, status, new Coord(fromLat, fromLong), new Coord(toLat, toLong), date)
+    const ride = new Ride(rideId, passengerId, status, new Coord(fromLat, fromLong), new Coord(toLat, toLong), date, distance)
     ride.driverId = driverId
     return ride
   }
@@ -56,12 +63,28 @@ export default class Ride {
     this.status.start()
   }
 
+  updatePosition(lat: number, long: number) {
+    this.distance = 0
+    this.positions.push(Position.create(this.rideId, lat, long))
+    for (const [index, position] of this.positions.entries()) {
+      const nextPosition = this.positions[index + 1]
+      if (!nextPosition) {
+        break
+      }
+      this.distance += DistanceCalculator.calculate(position.coord, nextPosition.coord)
+    }
+  }
+
   finish() {
     this.status.finish()
   }
 
   getStatus() {
     return this.status.value
+  }
+
+  getDisntace() {
+    return this.distance
   }
 
 }
