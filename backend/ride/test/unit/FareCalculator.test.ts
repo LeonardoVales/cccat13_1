@@ -1,4 +1,4 @@
-import { FareCalculatorFactory } from "../../src/domain/FareCalculator";
+import { FareCalculatorFactory } from '../../src/domain/FareCalculator'
 
 test("Deve calcular o valor da tarifa com base na distância", function () {
 	const distance = 10;

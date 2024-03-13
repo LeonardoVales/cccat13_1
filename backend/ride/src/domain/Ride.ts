@@ -8,7 +8,7 @@ export default class Ride {
 
   driverId?: string
   status: Status
-  positions: Position[]
+  // positions: Position[]
   
 
   private constructor(
@@ -18,10 +18,11 @@ export default class Ride {
     readonly from: Coord,
     readonly to: Coord,
     readonly date: Date,
-    private distance: number
+    private distance: number,
+    private fare: number
   ) {
     this.status = StatusFactory.create(this, status)
-    this.positions = []
+    // this.positions = []
   }
 
   static create(
@@ -34,7 +35,7 @@ export default class Ride {
     const rideId = crypto.randomUUID()
     const status = 'requested'
     const date = new Date()
-    return new Ride(rideId, passengerId, status, new Coord(fromLat, fromLong), new Coord(toLat, toLong), date, 0)
+    return new Ride(rideId, passengerId, status, new Coord(fromLat, fromLong), new Coord(toLat, toLong), date, 0, 0)
   }
 
   static restore(
@@ -48,8 +49,9 @@ export default class Ride {
     toLong: number,
     date: Date,
     distance: number,
+    fare: number,
   ) {
-    const ride = new Ride(rideId, passengerId, status, new Coord(fromLat, fromLong), new Coord(toLat, toLong), date, distance)
+    const ride = new Ride(rideId, passengerId, status, new Coord(fromLat, fromLong), new Coord(toLat, toLong), date, distance, fare)
     ride.driverId = driverId
     return ride
   }
@@ -63,19 +65,28 @@ export default class Ride {
     this.status.start()
   }
 
-  updatePosition(lat: number, long: number) {
+  // updatePosition(lat: number, long: number) {
+    // this.distance = 0
+    // this.positions.push(Position.create(this.rideId, lat, long))
+    // for (const [index, position] of this.positions.entries()) {
+    //   const nextPosition = this.positions[index + 1]
+    //   if (!nextPosition) {
+    //     break
+    //   }
+    //   this.distance += DistanceCalculator.calculate(position.coord, nextPosition.coord)
+    // }
+  // }
+
+  finish(positions: Position[]) {
     this.distance = 0
-    this.positions.push(Position.create(this.rideId, lat, long))
-    for (const [index, position] of this.positions.entries()) {
-      const nextPosition = this.positions[index + 1]
+    for (const [index, position] of positions.entries()) {
+      const nextPosition = positions[index + 1]
       if (!nextPosition) {
         break
       }
       this.distance += DistanceCalculator.calculate(position.coord, nextPosition.coord)
     }
-  }
-
-  finish() {
+    this.fare = this.distance * 2.1
     this.status.finish()
   }
 
@@ -85,6 +96,10 @@ export default class Ride {
 
   getDisntace() {
     return this.distance
+  }
+
+  getFare() {
+    return this.fare
   }
 
 }

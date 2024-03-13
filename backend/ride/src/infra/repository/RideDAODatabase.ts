@@ -18,16 +18,12 @@ export default class RideDAODatabase implements RideDAO {
     );
   }
 
-  async update(ride: any) {
+  async update(ride: Ride) {
     await this.connection.query(
-      "update cccat13.ride set driver_id = $1, status = $2, distance = $3 where ride_id = $4",
-      [ride.driverId, ride.status.getStatus(), ride.getDistance(), ride.rideId]
+      "update cccat13.ride set driver_id = $1, status = $2, distance = $3, fare = $4 where ride_id = $5",
+      [ride.driverId, ride.getStatus(), ride.getDisntace(), ride.getFare(), ride.rideId]
     );
-    // for (const position of ride.positions) {
-    //   await this.connection.query("insert into cccat13.position (position_id, ride_id, lat, long, date) values ($1, $2, $3, $4, $5) on conflict do nothing", [
-    //     position.positionId, ride.rideId, position.coord.getLat(), position.coord.getLong(), position.date
-    //   ])
-    // }
+
   }
 
   async getById(rideId: string) {
@@ -42,19 +38,9 @@ export default class RideDAODatabase implements RideDAO {
       parseFloat(rideData.to_lat),
       parseFloat(rideData.to_long),
       rideData.date,
-      parseFloat(rideData.distance)
+      parseFloat(rideData.distance),
+      parseFloat(rideData.fare),
     )
-
-    // const positionsData = await this.connection.query("select * from cccat13.position where ride_id = $1", [rideId])
-    // for (const positionData of positionsData) {
-    //   ride.positions.push(
-    //     new Position(
-    //       positionData.position_id,
-    //       new Coord(parseFloat(positionData.lat), parseFloat(positionData.long)),
-    //       positionData.date
-    //     )
-    //   )
-    // }
     return ride
   }
 
