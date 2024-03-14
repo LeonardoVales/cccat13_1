@@ -1,12 +1,12 @@
 import AcceptRide from "../../src/application/usecase/AcceptRide";
 import AccountDAO from "../../src/application/repository/AccountRepository";
-import AccountDAODatabase from "../../src/infra/repository/AccountDAODatabase";
+import AccountDAODatabase from "../../src/infra/repository/AccountRepositoryDatabase";
 import Connection from "../../src/infra/database/Connection";
 import GetRide from "../../src/application/usecase/GetRide";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
 import RequestRide from "../../src/application/usecase/RequestRide";
 import RideDAO from "../../src/application/repository/RideRepository";
-import RideDAODatabase from "../../src/infra/repository/RideDAODatabase";
+import RideDAODatabase from "../../src/infra/repository/RideRepositoryDatabase";
 import Signup from "../../src/application/usecase/Signup";
 import StartRide from "../../src/application/usecase/StartRide";
 

@@ -1,7 +1,7 @@
 //driver
 // import AccountService from "../src/AccountService";
 import sinon from 'sinon'
-import AccountDAO from "../../src/infra/repository/AccountDAODatabase";
+import AccountDAO from "../../src/infra/repository/AccountRepositoryDatabase";
 import MailerGateway from "../../src/infra/gateway/MailerGateway";
 import AccountDAOMemory from "../../src/infra/repository/AccountDAOMemory";
 import Account from "../../src/domain/Account";
@@ -10,7 +10,7 @@ import RideDAO from '../../src/application/repository/RideRepository';
 import Signup from '../../src/application/usecase/Signup';
 import GetAccount from '../../src/application/usecase/GetAccount';
 import PgPromiseAdapter from '../../src/infra/database/PgPromiseAdapter';
-import RideDAODatabase from '../../src/infra/repository/RideDAODatabase';
+import RideDAODatabase from '../../src/infra/repository/RideRepositoryDatabase';
 
 let connection: Connection
 let accountDAO: AccountDAO

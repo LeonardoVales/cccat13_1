@@ -2,11 +2,11 @@
 // adapter
 import Connection from "../database/Connection";
 import Ride from "../../domain/Ride";
-import RideDAO from "../../application/repository/RideRepository";
+import RideRepository from "../../application/repository/RideRepository";
 import Position from "../../domain/Position";
 import Coord from "../../domain/Coord";
 
-export default class RideDAODatabase implements RideDAO {
+export default class RideRepositoryDatabase implements RideRepository {
   constructor(readonly connection: Connection) {
 
   }

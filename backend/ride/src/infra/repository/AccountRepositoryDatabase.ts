@@ -2,10 +2,10 @@
 // adapter
 import pgp from "pg-promise";
 import Account from "../../domain/Account";
-import AccountDAO from "../../application/repository/AccountRepository";
+import AccountRepository from "../../application/repository/AccountRepository";
 import Connection from "../database/Connection";
 
-export default class AccountDAODatabase implements AccountDAO {
+export default class AccountRepositoryDatabase implements AccountRepository {
   constructor(readonly connection: Connection) {
 
   }

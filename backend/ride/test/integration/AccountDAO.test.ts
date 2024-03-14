@@ -1,6 +1,6 @@
 import Account from '../../src/domain/Account'
-import AccountDAODatabase from '../../src/infra/repository/AccountDAODatabase'
-import AccountDAO from "../../src/infra/repository/AccountDAODatabase"
+import AccountDAODatabase from '../../src/infra/repository/AccountRepositoryDatabase'
+import AccountDAO from "../../src/infra/repository/AccountRepositoryDatabase"
 import Connection from '../../src/infra/database/Connection'
 import PgPromiseAdapter from '../../src/infra/database/PgPromiseAdapter'
 

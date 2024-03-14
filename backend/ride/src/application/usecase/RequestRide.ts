@@ -1,7 +1,7 @@
 import RideDAO from '../repository/RideRepository'
-import RideDAODatabase from '../../infra/repository/RideDAODatabase'
+import RideDAODatabase from '../../infra/repository/RideRepositoryDatabase'
 import AccountDAO from '../repository/AccountRepository'
-import AccountDAODatabase from '../../infra/repository/AccountDAODatabase'
+import AccountDAODatabase from '../../infra/repository/AccountRepositoryDatabase'
 import Ride from '../../domain/Ride'
 
 // Um contrato de entrada
