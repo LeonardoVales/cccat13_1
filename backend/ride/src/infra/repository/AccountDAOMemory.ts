@@ -1,6 +1,6 @@
 // resource - driver 
 // adapter
-import AccountDAO from "../../application/repository/AccountDAO";
+import AccountDAO from "../../application/repository/AccountRepository";
 
 export default class AccountDAOMemory implements AccountDAO {
 

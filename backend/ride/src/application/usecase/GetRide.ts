@@ -1,6 +1,6 @@
 import RideDAO from '../repository/RideRepository'
 import RideDAODatabase from '../../infra/repository/RideDAODatabase'
-import AccountDAO from '../repository/AccountDAO'
+import AccountDAO from '../repository/AccountRepository'
 
 export default class GetRide {
   //inversão de dependência

@@ -1,5 +1,5 @@
 import Account from "../../domain/Account";
-import AccountDAO from "../repository/AccountDAO";
+import AccountDAO from "../repository/AccountRepository";
 import MailerGateway from "../../infra/gateway/MailerGateway";
 
 type Input = {

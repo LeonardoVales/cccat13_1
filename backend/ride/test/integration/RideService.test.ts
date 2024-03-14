@@ -1,5 +1,5 @@
 import AcceptRide from "../../src/application/usecase/AcceptRide";
-import AccountDAO from "../../src/application/repository/AccountDAO";
+import AccountDAO from "../../src/application/repository/AccountRepository";
 import AccountDAODatabase from "../../src/infra/repository/AccountDAODatabase";
 import Connection from "../../src/infra/database/Connection";
 import GetRide from "../../src/application/usecase/GetRide";

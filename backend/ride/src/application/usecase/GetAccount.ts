@@ -1,4 +1,4 @@
-import AccountDAO from "../repository/AccountDAO";
+import AccountDAO from "../repository/AccountRepository";
 
 export default class GetAccount {
 

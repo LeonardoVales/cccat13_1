@@ -2,7 +2,7 @@
 // adapter
 import pgp from "pg-promise";
 import Account from "../../domain/Account";
-import AccountDAO from "../../application/repository/AccountDAO";
+import AccountDAO from "../../application/repository/AccountRepository";
 import Connection from "../database/Connection";
 
 export default class AccountDAODatabase implements AccountDAO {
