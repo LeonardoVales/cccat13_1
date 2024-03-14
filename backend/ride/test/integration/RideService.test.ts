@@ -5,7 +5,7 @@ import Connection from "../../src/infra/database/Connection";
 import GetRide from "../../src/application/usecase/GetRide";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
 import RequestRide from "../../src/application/usecase/RequestRide";
-import RideDAO from "../../src/application/repository/RideDAO";
+import RideDAO from "../../src/application/repository/RideRepository";
 import RideDAODatabase from "../../src/infra/repository/RideDAODatabase";
 import Signup from "../../src/application/usecase/Signup";
 import StartRide from "../../src/application/usecase/StartRide";

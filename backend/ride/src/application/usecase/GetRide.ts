@@ -1,4 +1,4 @@
-import RideDAO from '../repository/RideDAO'
+import RideDAO from '../repository/RideRepository'
 import RideDAODatabase from '../../infra/repository/RideDAODatabase'
 import AccountDAO from '../repository/AccountDAO'
 

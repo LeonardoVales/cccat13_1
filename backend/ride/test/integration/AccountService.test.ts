@@ -6,7 +6,7 @@ import MailerGateway from "../../src/infra/gateway/MailerGateway";
 import AccountDAOMemory from "../../src/infra/repository/AccountDAOMemory";
 import Account from "../../src/domain/Account";
 import Connection from '../../src/infra/database/Connection';
-import RideDAO from '../../src/application/repository/RideDAO';
+import RideDAO from '../../src/application/repository/RideRepository';
 import Signup from '../../src/application/usecase/Signup';
 import GetAccount from '../../src/application/usecase/GetAccount';
 import PgPromiseAdapter from '../../src/infra/database/PgPromiseAdapter';

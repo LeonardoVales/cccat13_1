@@ -1,6 +1,6 @@
 import Position from "../../domain/Position";
 import PositionRepository from "../repository/PositionRepository";
-import RideDAO from "../repository/RideDAO";
+import RideDAO from "../repository/RideRepository";
 
 
 export default class UpdatePosition {

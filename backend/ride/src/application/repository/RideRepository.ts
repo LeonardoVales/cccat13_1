@@ -1,7 +1,7 @@
 import Ride from "../../domain/Ride"
 
 // Na arquitetura limpa, isso é um interface adapter
-export default interface RideDAO {
+export default interface RideRepository {
   save(ride: Ride): Promise<void>
   update(ride: any): Promise<void>
   getById(rideId: string): Promise<Ride>

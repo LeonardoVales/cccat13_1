@@ -2,7 +2,7 @@
 // adapter
 import Connection from "../database/Connection";
 import Ride from "../../domain/Ride";
-import RideDAO from "../../application/repository/RideDAO";
+import RideDAO from "../../application/repository/RideRepository";
 import Position from "../../domain/Position";
 import Coord from "../../domain/Coord";
 

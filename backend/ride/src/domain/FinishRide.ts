@@ -1,5 +1,5 @@
 import PositionRepository from "../application/repository/PositionRepository";
-import RideDAO from "../application/repository/RideDAO";
+import RideDAO from "../application/repository/RideRepository";
 
 type Input = {
   rideId: string
