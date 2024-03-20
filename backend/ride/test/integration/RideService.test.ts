@@ -1,14 +1,15 @@
 import AcceptRide from "../../src/application/usecase/AcceptRide";
-import AccountDAO from "../../src/application/repository/AccountRepository";
 import AccountDAODatabase from "../../src/infra/repository/AccountRepositoryDatabase";
 import Connection from "../../src/infra/database/Connection";
 import GetRide from "../../src/application/usecase/GetRide";
 import PgPromiseAdapter from "../../src/infra/database/PgPromiseAdapter";
 import RequestRide from "../../src/application/usecase/RequestRide";
-import RideDAO from "../../src/application/repository/RideRepository";
-import RideDAODatabase from "../../src/infra/repository/RideRepositoryDatabase";
 import Signup from "../../src/application/usecase/Signup";
 import StartRide from "../../src/application/usecase/StartRide";
+import RideRepository from "../../src/application/repository/RideRepository";
+import AccountRepository from "../../src/application/repository/AccountRepository";
+import RideRepositoryDatabase from "../../src/infra/repository/RideRepositoryDatabase";
+import RepositoryDatabaseFactory from "../../src/infra/factory/RepositoryDatabaseFactory";
 
 let signup: Signup
 let requestRide: RequestRide
@@ -16,18 +17,19 @@ let acceptRide: AcceptRide
 let startRide: StartRide
 let getRide: GetRide
 let connection: Connection
-let rideDAO: RideDAO
-let accountDAO: AccountDAO
+let rideRepository: RideRepository
+let accountRepository: AccountRepository
 
 beforeEach(() => {
   connection = new PgPromiseAdapter()
-  rideDAO = new RideDAODatabase(connection)
-  accountDAO = new AccountDAODatabase(connection)
-  signup = new Signup(accountDAO)
-  requestRide = new RequestRide(rideDAO, accountDAO)
-  acceptRide = new AcceptRide(rideDAO, accountDAO)
-  startRide = new StartRide(rideDAO)
-  getRide = new GetRide(rideDAO, accountDAO)
+  rideRepository = new RideRepositoryDatabase(connection)
+  accountRepository = new AccountDAODatabase(connection)
+  signup = new Signup(accountRepository)
+  const repositoryFactory = new RepositoryDatabaseFactory(connection)
+  requestRide = new RequestRide(repositoryFactory)
+  acceptRide = new AcceptRide(rideRepository, accountRepository)
+  startRide = new StartRide(rideRepository)
+  getRide = new GetRide(rideRepository, accountRepository)
 })
 
 afterEach( async function () {

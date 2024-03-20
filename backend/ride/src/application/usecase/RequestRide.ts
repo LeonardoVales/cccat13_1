@@ -1,8 +1,7 @@
-import RideDAO from '../repository/RideRepository'
-import RideDAODatabase from '../../infra/repository/RideRepositoryDatabase'
-import AccountDAO from '../repository/AccountRepository'
-import AccountDAODatabase from '../../infra/repository/AccountRepositoryDatabase'
+import RideRepository from '../repository/RideRepository'
+import AccountRepository from '../repository/AccountRepository'
 import Ride from '../../domain/Ride'
+import RepositoryFactory from '../factory/RepositoryFactory'
 
 // Um contrato de entrada
 type Input = {
@@ -18,26 +17,28 @@ type Input = {
 }
 
 export default class RequestRide {
-  //inversão de dependência
-  constructor(
-    readonly rideDAO: RideDAO,
-    readonly accountDAO: AccountDAO,
-  ) {
 
+  private readonly rideRepository: RideRepository
+  private readonly accountRepository: AccountRepository
+
+  //inversão de dependência
+  constructor(readonly repositoryFactory: RepositoryFactory) {
+    this.accountRepository = repositoryFactory.createAccountRepository()
+    this.rideRepository = repositoryFactory.createRideRepository()
   }
 
   async execute(input: Input) {
     // Essa validação aqui não deve ficar dentro da Ride
     // Pois eu não tenho account dentro da Ride.
     // Isso aqui sim é uma regra do useCase
-    const account = await this.accountDAO.getById(input.passengerId)
+    const account = await this.accountRepository.getById(input.passengerId)
     if (!account?.isPassenger) {
       throw new Error('Account is not from a passenger')
     }
 
     //Essa regra também não é responsabilidade da Ride
     // A ride não tem que saber se existem outras corridas ou não
-    const activeRides = await this.rideDAO.getActiveRidesByPassengerId(input.passengerId)
+    const activeRides = await this.rideRepository.getActiveRidesByPassengerId(input.passengerId)
     if (activeRides.length > 0) {
       throw new Error('This passenger already has a not completed')
     }
@@ -50,7 +51,7 @@ export default class RequestRide {
       input.to.long
     )
 
-    await this.rideDAO.save(ride)
+    await this.rideRepository.save(ride)
     return {
       rideId: ride.rideId,
     }
