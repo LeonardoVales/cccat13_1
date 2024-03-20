@@ -27,7 +27,7 @@ beforeEach(() => {
   signup = new Signup(accountRepository)
   const repositoryFactory = new RepositoryDatabaseFactory(connection)
   requestRide = new RequestRide(repositoryFactory)
-  acceptRide = new AcceptRide(rideRepository, accountRepository)
+  acceptRide = new AcceptRide(repositoryFactory)
   startRide = new StartRide(rideRepository)
   getRide = new GetRide(rideRepository, accountRepository)
 })
