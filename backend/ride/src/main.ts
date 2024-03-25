@@ -11,6 +11,7 @@ import GetRide from './application/usecase/GetRide'
 import AccountRepositoryDatabase from './infra/repository/AccountRepositoryDatabase'
 import RideRepositoryDatabase from './infra/repository/RideRepositoryDatabase'
 import RepositoryDatabaseFactory from './infra/factory/RepositoryDatabaseFactory'
+import Registry from './infra/di/Registry'
 
 const app = express()
 const connection = new PgPromiseAdapter()
@@ -22,5 +23,11 @@ const getAccount = new GetAccount(accountRepository)
 const requestRide = new RequestRide(repositoryFactory)
 const getRide = new GetRide(rideRepository, accountRepository)
 const httpServer = new ExpressAdapter()
-new MainController(httpServer, signup, getAccount, requestRide, getRide )
+
+Registry.getInstance().privide("signup", signup)
+Registry.getInstance().privide("requestRide", requestRide)
+Registry.getInstance().privide("getAccount", getAccount)
+Registry.getInstance().privide("getRide", getRide)
+
+new MainController(httpServer)
 httpServer.listen(3000)
