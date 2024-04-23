@@ -9,6 +9,7 @@ type Input = {
 	isPassenger: boolean,
 	isDriver: boolean,
 	carPlate: string,
+	password?: string,
 }
 
 export default class Signup {
@@ -32,7 +33,8 @@ export default class Signup {
 			input.cpf,
 			input.isPassenger,
 			input.isDriver,
-			input.carPlate
+			input.carPlate,
+			input.password,
 		)
 		await this.accountDAO.save(account)
 		await this.mailerGateway.send(account.email.getValue(), "Verification", `Please verify your code at first login ${account.verificationCode}`);
