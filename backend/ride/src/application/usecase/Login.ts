@@ -1,3 +1,4 @@
+import TokenGenerator from "../../domain/TokenGenerator";
 import AccountRepository from "../repository/AccountRepository";
 
 type Input = {
@@ -21,7 +22,7 @@ export default class Login {
     if (!account.password.validate(input.password)) {
       throw new Error("Authentication failed")
     }
-    const token = '123'
+    const token = TokenGenerator.generate(account, new Date())
     return {
       token,
     }
